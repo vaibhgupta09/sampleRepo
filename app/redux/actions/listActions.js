@@ -29,17 +29,21 @@ export const fetchCNList = () => {
         Contacts.getAll((err, contacts) => {
           if (err === 'denied') {
             // error
+            alert('Permission denied');
           } else {
+           
             var i = 0;
-            while (i < 20) {
+            while (i < 2) {
+              alert(JSON.stringify(contacts[i]))
               if (contacts[i].givenName != null) {
                 if (0 in contacts[i].phoneNumbers) {
                   const phone = contacts[i].phoneNumbers[0].number;
                   const name = contacts[i].givenName;
-                  pushedContacts.push({ name: name, phone: phone });
-                  //pushedContacts.push(contacts);  ----for whole info of contacts
+                  //pushedContacts.push({ contact });
+                  pushedContacts.push(contacts[i]); 
                 }
               }
+            
               i++;
             }
 
